@@ -2,6 +2,7 @@ package com.example.svarp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class assessment_res extends AppCompatActivity {
@@ -25,27 +27,20 @@ public class assessment_res extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_res);
 
-        // Initialize views
         initViews();
-
-        // Setup navigation
         setupNavigation();
 
-        // Get input from previous activities
-        String voiceInput = getIntent().getStringExtra("voice_text");
-        ArrayList<String> selectedSymptoms = getIntent().getStringArrayListExtra("selected_symptoms");
-
-        // Run health assessment
-        runAssessment(voiceInput, selectedSymptoms);
+        ArrayList<String> selectedSymptomNames = getIntent().getStringArrayListExtra("selected_symptoms");
+        runAssessment(selectedSymptomNames);
     }
 
     private void initViews() {
-        txtKeyTitle = findViewById(R.id.txtKeyTitle);
+        txtKeyTitle   = findViewById(R.id.txtKeyTitle);
         txtKeyFindings = findViewById(R.id.txtKeyFindings);
-        actionText1 = findViewById(R.id.actionText1);
-        actionText2 = findViewById(R.id.actionText2);
-        actionText3 = findViewById(R.id.actionText3);
-        riskRecycler = findViewById(R.id.riskLevel);
+        actionText1   = findViewById(R.id.actionText1);
+        actionText2   = findViewById(R.id.actionText2);
+        actionText3   = findViewById(R.id.actionText3);
+        riskRecycler  = findViewById(R.id.riskLevel);
     }
 
     private void setupNavigation() {
@@ -66,59 +61,92 @@ public class assessment_res extends AppCompatActivity {
         btnBack.setOnClickListener(v -> onBackPressed());
     }
 
-    private void runAssessment(String voiceInput, ArrayList<String> selectedSymptoms) {
-        // Create decision engine
-        HealthDecisionEngine engine = new HealthDecisionEngine();
+    private void runAssessment(ArrayList<String> selectedSymptomNames) {
+        // Read saved language preference
+        SharedPreferences prefs = getSharedPreferences(LanguageAdapter.PREFS_NAME, MODE_PRIVATE);
+        String lang = prefs.getString(LanguageAdapter.KEY_LANGUAGE, LanguageAdapter.LANG_ENGLISH);
+        boolean isHindi = LanguageAdapter.LANG_HINDI.equals(lang);
 
-        // Convert to list (handle null)
-        List<String> symptoms = (selectedSymptoms != null) ? selectedSymptoms : new ArrayList<>();
+        // Create engine with correct language
+        HealthDecisionEngine engine = new HealthDecisionEngine(isHindi);
+
+        // Convert symptom names to enum
+        List<HealthDecisionEngine.Symptom> symptoms = convertToSymptoms(selectedSymptomNames);
 
         // Analyze
-        HealthDecisionEngine.HealthAssessment result = engine.analyzeInput(
-                voiceInput != null ? voiceInput : "",
-                symptoms
-        );
+        HealthDecisionEngine.HealthAssessment result = engine.analyzeInput(symptoms);
 
         // Update UI
         updateRiskLevel(result.riskLevel);
-        updateKeyFindings(result);
+        updateKeyFindings(result, isHindi);
         updateActionSteps(result.actionSteps);
     }
 
-    private void updateRiskLevel(String risk) {
+    private List<HealthDecisionEngine.Symptom> convertToSymptoms(ArrayList<String> names) {
+        List<HealthDecisionEngine.Symptom> symptoms = new ArrayList<>();
+        if (names == null) return symptoms;
+
+        for (String name : names) {
+            switch (name.toLowerCase().trim()) {
+                case "fever":                  symptoms.add(HealthDecisionEngine.Symptom.FEVER); break;
+                case "cough":                  symptoms.add(HealthDecisionEngine.Symptom.COUGH); break;
+                case "headache":               symptoms.add(HealthDecisionEngine.Symptom.HEADACHE); break;
+                case "fatigue":                symptoms.add(HealthDecisionEngine.Symptom.FATIGUE); break;
+                case "sore throat":            symptoms.add(HealthDecisionEngine.Symptom.SORE_THROAT); break;
+                case "vomiting": case "vomit": symptoms.add(HealthDecisionEngine.Symptom.VOMITING); break;
+                case "body ache":              symptoms.add(HealthDecisionEngine.Symptom.BODY_ACHE); break;
+                case "dizziness":              symptoms.add(HealthDecisionEngine.Symptom.DIZZINESS); break;
+                case "skin rash":              symptoms.add(HealthDecisionEngine.Symptom.SKIN_RASH); break;
+                case "eye discomfort":         symptoms.add(HealthDecisionEngine.Symptom.EYE_DISCOMFORT); break;
+                case "toothache":              symptoms.add(HealthDecisionEngine.Symptom.TOOTHACHE); break;
+                case "chest pain":             symptoms.add(HealthDecisionEngine.Symptom.CHEST_PAIN); break;
+                case "shortness of breath": case "breathing":
+                    symptoms.add(HealthDecisionEngine.Symptom.SHORTNESS_OF_BREATH); break;
+                case "nausea":                 symptoms.add(HealthDecisionEngine.Symptom.NAUSEA); break;
+                case "weakness":               symptoms.add(HealthDecisionEngine.Symptom.WEAKNESS); break;
+                case "weight loss":            symptoms.add(HealthDecisionEngine.Symptom.WEIGHT_LOSS); break;
+                case "blood in stool": case "blood stool":
+                    symptoms.add(HealthDecisionEngine.Symptom.BLOOD_IN_STOOL); break;
+                case "blood in urine": case "peeblood":
+                    symptoms.add(HealthDecisionEngine.Symptom.BLOOD_IN_URINE); break;
+                case "diarrhea":               symptoms.add(HealthDecisionEngine.Symptom.DIARRHEA); break;
+                case "stomach ache": case "stomach pain":
+                    symptoms.add(HealthDecisionEngine.Symptom.STOMACH_ACHE); break;
+            }
+        }
+        return symptoms;
+    }
+
+    private void updateRiskLevel(HealthDecisionEngine.RiskLevel risk) {
         riskRecycler.setLayoutManager(new LinearLayoutManager(this));
         riskRecycler.setNestedScrollingEnabled(false);
-        RiskAdapter adapter = new RiskAdapter(risk);
+        RiskAdapter adapter = new RiskAdapter(risk.name());
         riskRecycler.setAdapter(adapter);
     }
 
     @SuppressLint("SetTextI18n")
-    private void updateKeyFindings(HealthDecisionEngine.HealthAssessment result) {
-        // Dynamic title based on severity
+    private void updateKeyFindings(HealthDecisionEngine.HealthAssessment result, boolean isHindi) {
         if (result.isEmergency) {
-            txtKeyTitle.setText("⚠️ URGENT: " + result.condition);
+            String prefix = isHindi ? "⚠️ ज़रूरी: " : "⚠️ URGENT: ";
+            txtKeyTitle.setText(prefix + result.condition);
             txtKeyTitle.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
         } else {
-            txtKeyTitle.setText("Assessment: " + result.condition);
+            String prefix = isHindi ? "आकलन: " : "Assessment: ";
+            txtKeyTitle.setText(prefix + result.condition);
         }
-
-        // Human-readable explanation
         txtKeyFindings.setText(result.explanation);
     }
 
     @SuppressLint("SetTextI18n")
     private void updateActionSteps(List<String> actions) {
-        // Clear all first
         actionText1.setText("");
         actionText2.setText("");
         actionText3.setText("");
 
-        // Fill available actions (up to 3)
         if (!actions.isEmpty()) actionText1.setText("1️⃣ " + actions.get(0));
         if (actions.size() >= 2) actionText2.setText("2️⃣ " + actions.get(1));
         if (actions.size() >= 3) actionText3.setText("3️⃣ " + actions.get(2));
 
-        // If we have more than 3, append to the third one
         if (actions.size() > 3) {
             StringBuilder extra = new StringBuilder(actionText3.getText().toString());
             for (int i = 3; i < actions.size(); i++) {

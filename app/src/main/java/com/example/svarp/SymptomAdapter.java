@@ -17,15 +17,29 @@ import java.util.Set;
 
 public class SymptomAdapter extends RecyclerView.Adapter<SymptomAdapter.ViewHolder> {
 
-    private final String[] symptoms;
+    private final String[] internalNames;   // English names used for engine mapping
+    private final String[] displayNames;    // Names shown on screen (English or Hindi)
     private final int[] icons;
     private final OnSelectionChanged callback;
     private final Set<Integer> selectedPositions = new HashSet<>();
 
+    // Constructor with separate internal and display names (for multilingual support)
+    public SymptomAdapter(String[] internalNames,
+                          String[] displayNames,
+                          int[] icons,
+                          OnSelectionChanged callback) {
+        this.internalNames = internalNames;
+        this.displayNames = displayNames;
+        this.icons = icons;
+        this.callback = callback;
+    }
+
+    // Original constructor (English only) — keeps backward compatibility
     public SymptomAdapter(String[] symptoms,
                           int[] icons,
                           OnSelectionChanged callback) {
-        this.symptoms = symptoms;
+        this.internalNames = symptoms;
+        this.displayNames = symptoms;
         this.icons = icons;
         this.callback = callback;
     }
@@ -40,21 +54,18 @@ public class SymptomAdapter extends RecyclerView.Adapter<SymptomAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        holder.txtSymptom.setText(symptoms[position]);
+        holder.txtSymptom.setText(displayNames[position]); // show display name
         holder.imgSymptom.setImageResource(icons[position]);
 
         boolean isSelected = selectedPositions.contains(position);
         holder.bindSelection(isSelected);
 
         holder.card.setOnClickListener(v -> {
-
-            if (isSelected) {
-                selectedPositions.remove(position); // deselect
+            if (selectedPositions.contains(position)) {
+                selectedPositions.remove(position);
             } else {
-                selectedPositions.add(position);    // select
+                selectedPositions.add(position);
             }
-
             callback.onChanged(selectedPositions.size());
             notifyItemChanged(position);
         });
@@ -62,14 +73,15 @@ public class SymptomAdapter extends RecyclerView.Adapter<SymptomAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return symptoms.length;
+        return internalNames.length;
     }
 
+    // Returns English internal names for engine mapping — always works regardless of display language
     public String[] getSelectedSymptoms() {
         String[] selected = new String[selectedPositions.size()];
         int i = 0;
         for (int pos : selectedPositions) {
-            selected[i++] = symptoms[pos];
+            selected[i++] = internalNames[pos];
         }
         return selected;
     }
@@ -90,7 +102,6 @@ public class SymptomAdapter extends RecyclerView.Adapter<SymptomAdapter.ViewHold
             imgSymptom = itemView.findViewById(R.id.imgSymptom);
             txtSymptom = itemView.findViewById(R.id.txtSymptom);
         }
-
 
         void bindSelection(boolean selected) {
             if (selected) {

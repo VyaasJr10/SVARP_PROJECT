@@ -65,7 +65,21 @@ public class Select_Symptoms extends AppCompatActivity {
                 "Headache",
                 "Fatigue",
                 "Sore throat",
-                "Nausea"
+                "Vomiting",
+                "Body Ache",
+                "Dizziness",
+                "Skin rash",
+                "Eye discomfort",
+                "Toothache",
+                "Chest Pain",
+                "Shortness of Breath",
+                "Nausea",
+                "Weakness",
+                "Weight Loss",
+                "Blood in Stool",
+                "Blood in Urine",
+                "Diarrhea",
+                "Stomach Ache"
         };
 
         int[] icons = {
@@ -74,7 +88,21 @@ public class Select_Symptoms extends AppCompatActivity {
                 R.drawable.headache,
                 R.drawable.fatigue,
                 R.drawable.sore_throat,
-                R.drawable.vomit
+                R.drawable.vomit,
+                R.drawable.body_ache,
+                R.drawable.dizziness,
+                R.drawable.skin_rash,
+                R.drawable.eye_discomfort,
+                R.drawable.toothache,
+                R.drawable.chest_pain,
+                R.drawable.breathing,
+                R.drawable.nausea,
+                R.drawable.weakness,
+                R.drawable.weight_loss,
+                R.drawable.blood_stool,
+                R.drawable.peeblood,
+                R.drawable.diarrhea,
+                R.drawable.stomach_ache
         };
 
         recyclerView.setLayoutManager(

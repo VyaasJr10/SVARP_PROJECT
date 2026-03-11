@@ -43,9 +43,6 @@ public class Main_Screen extends AppCompatActivity {
         ConstraintLayout cardHistory = findViewById(R.id.cardHistory);
         TextView noticeText = findViewById(R.id.sub5);
 
-        // -------------------------
-        // Navigation
-        // -------------------------
 
         btnMic.setOnClickListener(v ->
                 startActivity(new Intent(this, TalkToSvarp.class))

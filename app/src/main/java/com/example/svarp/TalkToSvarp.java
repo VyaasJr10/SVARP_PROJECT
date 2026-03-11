@@ -106,7 +106,7 @@ public class TalkToSvarp extends AppCompatActivity {
         if (isListening) return;
 
         isListening = true;
-        heading.setText("I'm listening");
+        heading.setText("I'm listening....");
         transcript.setVisibility(View.VISIBLE);
         btnStop.setVisibility(View.VISIBLE);
         helper.setVisibility(View.VISIBLE);

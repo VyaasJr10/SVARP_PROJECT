@@ -91,6 +91,7 @@ public class SymptomAdapter extends RecyclerView.Adapter<SymptomAdapter.ViewHold
             txtSymptom = itemView.findViewById(R.id.txtSymptom);
         }
 
+
         void bindSelection(boolean selected) {
             if (selected) {
                 card.setStrokeColor(

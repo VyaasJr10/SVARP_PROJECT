@@ -2,6 +2,8 @@ package com.example.svarp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -27,5 +29,13 @@ public class setting extends AppCompatActivity {
         card3.setOnClickListener(v ->
                 startActivity(new Intent(this, privacy.class))
         );
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 }

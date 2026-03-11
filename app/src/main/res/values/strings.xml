@@ -1,9 +1,5 @@
 <resources>
 
-    <!-- ========================= -->
-    <!-- App Info & Accessibility -->
-    <!-- ========================= -->
-
     <string name="app_name">SVARP</string>
 
     <string name="description">logo</string>
@@ -12,19 +8,13 @@
     <string name="description3">Microphone button</string>
     <string name="description_4">Choose your preferred language for voice and text.</string>
 
-    <!-- ========================= -->
-    <!-- Headings / Titles -->
-    <!-- ========================= -->
-
     <string name="heading1">Choose Language</string>
     <string name="heading2">AI Explanation</string>
     <string name="heading3">Chat with SVARP</string>
     <string name="heading4">Describe your symptoms</string>
     <string name="heading5">Recommended Action</string>
+    <string name="talk1">Tap to Talk</string>
 
-    <!-- ========================= -->
-    <!-- General Actions / Buttons -->
-    <!-- ========================= -->
 
     <string name="btn_start">Start</string>
     <string name="next">Next</string>
@@ -182,8 +172,8 @@
     <string name="advice">Direct professional advice</string>
     <string name="careCenter">Nearest Care Center</string>
     <string name="distance">0.8 miles away • Open now</string>
-    <string name="subHeading">When to seek ER care</string>
-    <string name="warningHeading">When to seek ER care</string>
+    <string name="subHeading">When to seek care</string>
+    <string name="warningHeading">When to seek care</string>
     <string name="warning1">Difficulty breathing or shortness of breath</string>
     <string name="warning2">Persistent pain or pressure in chest</string>
     <string name="warning3">New confusion or inability to wake</string>

@@ -20,6 +20,7 @@ public class TalkToSvarp extends AppCompatActivity {
     private View rippleView;
     private Button btnStop;
     private TextView heading, transcript, helper;
+    private ImageView btnMic;
 
     private SpeechRecognizer speechRecognizer;
     private Intent speechIntent;
@@ -41,12 +42,33 @@ public class TalkToSvarp extends AppCompatActivity {
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
 
         speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+
         speechIntent.putExtra(
                 RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
         );
-        speechIntent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
-        speechIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
+
+// Let Android auto detect language
+        speechIntent.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE,
+                java.util.Locale.getDefault()
+        );
+
+        speechIntent.putExtra(
+                RecognizerIntent.EXTRA_PARTIAL_RESULTS,
+                true
+        );
+
+// Prefer offline recognition
+        speechIntent.putExtra(
+                RecognizerIntent.EXTRA_PREFER_OFFLINE,
+                true
+        );
+
+        speechIntent.putExtra(
+                RecognizerIntent.EXTRA_CALLING_PACKAGE,
+                getPackageName()
+        );
 
         speechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
@@ -106,7 +128,7 @@ public class TalkToSvarp extends AppCompatActivity {
         if (isListening) return;
 
         isListening = true;
-        heading.setText("I'm listening....");
+        heading.setText("I'm listening");
         transcript.setVisibility(View.VISIBLE);
         btnStop.setVisibility(View.VISIBLE);
         helper.setVisibility(View.VISIBLE);
@@ -122,13 +144,57 @@ public class TalkToSvarp extends AppCompatActivity {
         rippleView.setVisibility(View.GONE);
         speechRecognizer.stopListening();
     }
+    private String detectLanguage(String text) {
+
+        for (char c : text.toCharArray()) {
+
+            if (Character.UnicodeBlock.of(c) ==
+                    Character.UnicodeBlock.DEVANAGARI) {
+
+                return "hindi";
+            }
+        }
+
+        return "english";
+    }
 
     private void updateTranscript(Bundle bundle) {
+
         ArrayList<String> results =
                 bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
         if (results != null && !results.isEmpty()) {
-            transcript.setText(results.get(0));
+
+            String spokenText = results.get(0);
+
+            // Show spoken text
+            transcript.setText(spokenText);
+
+            // Detect language
+            String language = detectLanguage(spokenText);
+
+            // Run health analysis
+            HealthDecisionEngine engine = new HealthDecisionEngine();
+
+            HealthDecisionEngine.HealthAssessment assessment =
+                    engine.analyzeInput(spokenText, new ArrayList<>());
+
+            // Show result in UI
+            if(language.equals("hindi")){
+
+                helper.setText(
+                        "स्थिति: " + assessment.condition +
+                                "\nसलाह: " + assessment.explanation
+                );
+
+            } else {
+
+                helper.setText(
+                        "Condition: " + assessment.condition +
+                                "\nAdvice: " + assessment.explanation
+                );
+
+            }
         }
     }
 

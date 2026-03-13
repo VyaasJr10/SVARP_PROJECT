@@ -136,7 +136,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/helpCenter"
+        android:id="@+id/dailyReminder"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -150,11 +150,11 @@
         app:layout_constraintTop_toBottomOf="@+id/cardHelp">
 
         <ImageView
-            android:id="@+id/iconHelpCenter"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/iconReminder"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:contentDescription="@null"
-            android:src="@drawable/location"
+            android:src="@drawable/bell"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -164,13 +164,13 @@
             android:id="@+id/head2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:text="@string/careCenter"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/Tips"
             android:textColor="@color/blue_900"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/iconHelpCenter"
+            app:layout_constraintStart_toEndOf="@+id/iconReminder"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -181,6 +181,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.181"
             app:tint="@color/gray_secondary" />
 
         <TextView
@@ -188,10 +189,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:text="@string/distance"
+            android:text="@string/tipTag"
             android:textColor="@color/charcoal"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/iconHelpCenter"
+            app:layout_constraintStart_toEndOf="@+id/iconReminder"
             app:layout_constraintTop_toBottomOf="@+id/head2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -206,7 +207,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helpCenter" />
+        app:layout_constraintTop_toBottomOf="@+id/dailyReminder" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardWarning"
@@ -337,39 +338,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/icon4"
             app:layout_constraintTop_toTopOf="@id/icon4" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Divider -->
-    <View
-        android:id="@+id/Divider1"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/gray_disabled"
-        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:background="@color/blue_100"
-        android:paddingVertical="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/assessmentID"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -32,17 +32,10 @@
 
     <string name="BtnStop_analyze"><![CDATA[Stop & Analyze]]></string>
 
-    <!-- ========================= -->
-    <!-- Splash / Home -->
-    <!-- ========================= -->
-
     <string name="greeting">How Can I Help?</string>
     <string name="talk">Start Voice Chat</string>
     <string name="subtitle">Reliable health guidance</string>
 
-    <!-- ========================= -->
-    <!-- Language Selection -->
-    <!-- ========================= -->
 
     <string name="lang_english">English</string>
     <string name="lang_hindi">हिंदी</string>
@@ -170,8 +163,8 @@
     <string name="heading6">Local Health Resources</string>
     <string name="help">24/7 Nurse Line</string>
     <string name="advice">Direct professional advice</string>
-    <string name="careCenter">Nearest Care Center</string>
-    <string name="distance">0.8 miles away • Open now</string>
+    <string name="Tips">Daily Health Tips</string>
+    <string name="tipTag">Stay Updated</string>
     <string name="subHeading">When to seek care</string>
     <string name="warningHeading">When to seek care</string>
     <string name="warning1">Difficulty breathing or shortness of breath</string>
@@ -179,5 +172,8 @@
     <string name="warning3">New confusion or inability to wake</string>
     <string name="warning4">Bluish lips or face</string>
     <string name="assessmentID">Assessment ID: #8829-XJ</string>
+    <string name="notification">Get Notification</string>
+    <string name="symptom">Symptom Info</string>
+    <string name="Symptoms_info">Symptoms Information</string>
 
 </resources>

@@ -57,8 +57,15 @@ public class assessment_res extends AppCompatActivity {
         });
 
         btnCare.setOnClickListener(v ->
-                startActivity(new Intent(this, care_guidance.class))
-        );
+        {
+            ArrayList<String> selectedSymptoms =
+                    getIntent().getStringArrayListExtra("selected_symptoms");
+
+            Intent intent = new Intent(this, care_guidance.class);
+            intent.putStringArrayListExtra("selected_symptoms", selectedSymptoms);
+            startActivity(intent);
+
+        });
 
         btnBack.setOnClickListener(v -> onBackPressed());
     }

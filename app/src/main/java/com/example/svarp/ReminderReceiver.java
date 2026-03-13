@@ -20,11 +20,21 @@ public class ReminderReceiver extends BroadcastReceiver {
     private static final String CHANNEL_ID = "health_reminder_channel";
 
     private final String[] tips = {
-            "Drink enough water today.",
-            "Take a short walk to refresh your mind.",
-            "Stretch your body for a few minutes.",
-            "Eat fruits and vegetables for better health.",
-            "Take a deep breath and relax."
+            "💧 Drink 8 glasses of water today — dehydration causes more headaches than you think.",
+            "🚶 A 10-minute walk after meals improves digestion and keeps your energy stable.",
+            "🧘 Take 5 deep breaths right now. Inhale for 4 seconds, hold for 4, exhale for 4.",
+            "🥗 Try to add one fruit or vegetable to your next meal — small changes add up.",
+            "😴 Aim for 7–9 hours of sleep tonight. Your immune system repairs itself while you rest.",
+            "🧼 Wash your hands before your next meal — it's the simplest way to avoid infections.",
+            "📵 Take a 20-minute break from your screen today. Your eyes and mind will thank you.",
+            "☀️ Step outside for 15 minutes today — sunlight boosts your vitamin D and mood.",
+            "🍵 Swap one tea or coffee today for warm water with lemon — great for digestion.",
+            "🧍 Check your posture right now. Sit straight, relax your shoulders, unclench your jaw.",
+            "🫁 If you've had a cough or cold this week, stay warm and avoid cold drinks today.",
+            "🩺 Haven't had a health check-up in a while? Consider booking one soon.",
+            "🥣 Don't skip breakfast — it stabilises your blood sugar and keeps you focused.",
+            "💤 Try to sleep and wake at the same time every day — consistency improves sleep quality.",
+            "🏃 Even 15 minutes of movement a day significantly reduces your risk of heart disease."
     };
 
     private final Random random = new Random();

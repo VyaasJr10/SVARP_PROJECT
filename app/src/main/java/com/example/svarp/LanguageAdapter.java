@@ -21,8 +21,13 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.Langua
 
     public static final String PREFS_NAME = "svarp_prefs";
     public static final String KEY_LANGUAGE = "selected_language";
-    public static final String LANG_HINDI = "hindi";
     public static final String LANG_ENGLISH = "english";
+    public static final String LANG_HINDI = "hindi";
+    public static final String LANG_MARATHI = "marathi";
+    public static final String LANG_KONKANI = "konkani";
+    public static final String LANG_TAMIL = "tamil";
+    public static final String LANG_TELUGU = "telugu";
+    public static final String LANG_BENGALI = "bengali";
 
     private final List<String> languages;
     private int selectedPosition = -1;
@@ -62,16 +67,33 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.Langua
 
             Context context = holder.itemView.getContext();
 
-            // Save language choice to SharedPreferences
             String langCode = getLangCode(language);
             SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
             prefs.edit().putString(KEY_LANGUAGE, langCode).apply();
 
-            // ✅ Locale set करें — Hindi या English
-            if (langCode.equals(LANG_HINDI)) {
-                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("hi"));
-            } else {
-                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("en"));
+            // ✅ Set locale for all supported languages
+            switch (langCode) {
+                case LANG_HINDI:
+                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("hi"));
+                    break;
+                case LANG_MARATHI:
+                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("mr"));
+                    break;
+                case LANG_KONKANI:
+                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("kok"));
+                    break;
+                case LANG_TAMIL:
+                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("ta"));
+                    break;
+                case LANG_TELUGU:
+                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("te"));
+                    break;
+                case LANG_BENGALI:
+                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("bn"));
+                    break;
+                default:
+                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("en"));
+                    break;
             }
 
             Intent intent = new Intent(context, Main_Screen.class);
@@ -84,15 +106,25 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.Langua
         });
     }
 
-    // Maps display language name to a simple code
     private String getLangCode(String displayName) {
         if (displayName == null) return LANG_ENGLISH;
-        if (displayName.trim().equals("हिंदी")
-                || displayName.trim().equals("हिन्दी")
-                || displayName.toLowerCase().trim().equals("hindi")) {
-            return LANG_HINDI;
+        switch (displayName.trim()) {
+            case "हिंदी":
+            case "हिन्दी":
+                return LANG_HINDI;
+            case "मराठी":
+                return LANG_MARATHI;
+            case "कोंकणी":
+                return LANG_KONKANI;
+            case "தமிழ்":
+                return LANG_TAMIL;
+            case "తెలుగు":
+                return LANG_TELUGU;
+            case "বাংলা":
+                return LANG_BENGALI;
+            default:
+                return LANG_ENGLISH;
         }
-        return LANG_ENGLISH;
     }
 
     @Override

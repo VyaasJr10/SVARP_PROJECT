@@ -1,402 +1,408 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_200"
+    android:fillViewport="true"
     tools:context=".Main_Screen">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/navigationBar"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:background="@color/blue_100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/appLogo"
-            android:layout_width="73dp"
-            android:layout_height="101dp"
-            android:layout_marginStart="5dp"
-            android:contentDescription="@string/logo"
-            android:padding="10dp"
-            android:src="@drawable/logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/charcoal" />
-
-        <TextView
-            android:id="@+id/appName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="176dp"
-            android:text="@string/app_name"
-            android:textColor="@color/blue_900"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/appSetting"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/appSetting"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="12dp"
-            android:clickable="true"
-            android:contentDescription="@string/icon3"
-            android:focusable="true"
-            android:padding="8dp"
-            android:src="@drawable/settings"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/charcoal" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/body"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/navigationBar">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cardMic"
+            android:id="@+id/navigationBar"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/common_box2"
-            android:backgroundTint="@color/blue_900"
-            android:minHeight="196dp"
-            android:padding="24dp"
+            android:layout_height="56dp"
+            android:background="@color/blue_100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/head1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/heading2"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/sub1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/sub_title2"
-                android:textColor="@color/blue_200"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/head1" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_mic"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/common_box2"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:paddingHorizontal="50dp"
-                android:text="@string/btntalk"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/blue_900"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:backgroundTint="@color/blue_200"
-                app:icon="@drawable/mic"
-                app:iconGravity="start"
-                app:iconSize="30dp"
-                app:iconTint="@color/blue_900"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sub1"
-                app:layout_constraintWidth_max="320dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cardSymptoms"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/common_box2"
-            android:backgroundTint="@color/blue_100"
-            android:minHeight="98dp"
-            android:padding="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardMic">
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/symptomsIcon"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                app:cardBackgroundColor="@color/blue_200"
-                app:cardCornerRadius="14dp"
-                app:cardElevation="4dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/icon4"
-                    android:src="@drawable/symptoms"
-                    app:tint="@color/blue_900" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/head2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="109dp"
-                android:text="@string/heading3"
-                android:textColor="@color/charcoal"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/symptomsIcon"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/sub2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="@string/sub_title3"
-                android:textColor="@color/charcoal"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/symptomsIcon"
-                app:layout_constraintTop_toBottomOf="@id/head2" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/dailyReminder"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/common_box2"
-            android:backgroundTint="@color/blue_100"
-            android:padding="22dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardSymptoms">
-
-
-            <!-- Icon -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/historyIconCard"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                app:cardBackgroundColor="@color/blue_200"
-                app:cardCornerRadius="14dp"
-                app:cardElevation="4dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/icon5"
-                    android:src="@drawable/bell"
-                    app:tint="@color/blue_900" />
-            </androidx.cardview.widget.CardView>
-
-            <!-- Title -->
-            <TextView
-                android:id="@+id/header1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="@string/heading4"
-                android:textColor="@color/blue_900"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/toggle"
-                app:layout_constraintStart_toEndOf="@id/historyIconCard"
-                app:layout_constraintTop_toTopOf="@id/historyIconCard" />
-
-            <!-- Subtitle -->
-            <TextView
-                android:id="@+id/subHeader"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="2dp"
-                android:text="@string/sub_title4"
-                android:textColor="@color/gray_secondary"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@id/toggle"
-                app:layout_constraintStart_toEndOf="@id/historyIconCard"
-                app:layout_constraintTop_toBottomOf="@id/header1" />
-
-            <!-- Toggle -->
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/blue_200"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/historyIconCard" />
-
-            <!-- Divider -->
-            <View
-                android:id="@+id/dividerNotify"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/blue_700"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/historyIconCard" />
-
-            <!-- Time Card -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/timeCard"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                app:cardBackgroundColor="@color/blue_700"
-                app:cardCornerRadius="14dp"
-                app:cardElevation="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dividerNotify">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="14dp">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/timeIcon"
-                        android:layout_width="44dp"
-                        android:layout_height="44dp"
-                        app:cardBackgroundColor="@color/blue_200"
-                        app:cardCornerRadius="14dp"
-                        app:cardElevation="4dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:layout_gravity="center"
-                            android:contentDescription="@string/icon6"
-                            android:src="@drawable/clock"
-                            app:tint="@color/blue_900" />
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:id="@+id/time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:textColor="@color/blue_100"
-                        android:textSize="26sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@id/timeIcon"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="08:00 AM" />
-
-                    <TextView
-                        android:id="@+id/changeTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/changeTime"
-                        android:textColor="@color/blue_200"
-                        android:textSize="11sp"
-                        app:layout_constraintStart_toEndOf="@id/timeIcon"
-                        app:layout_constraintTop_toBottomOf="@id/time" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cardNotice"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/common_box2"
-            android:backgroundTint="@color/blue_100"
-            android:minHeight="98dp"
-            android:padding="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dailyReminder">
-
             <ImageView
-                android:id="@+id/noticeIcon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="2dp"
-                android:contentDescription="@string/icon7"
-                android:src="@drawable/info"
+                android:id="@+id/appLogo"
+                android:layout_width="73dp"
+                android:layout_height="101dp"
+                android:layout_marginStart="5dp"
+                android:contentDescription="@string/logo"
+                android:padding="10dp"
+                android:src="@drawable/logo"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="#FF9E00" />
+                app:tint="@color/charcoal" />
 
             <TextView
-                android:id="@+id/head5"
-                android:layout_width="0dp"
+                android:id="@+id/appName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="146dp"
-                android:text="@string/heading5"
+                android:layout_marginEnd="176dp"
+                android:text="@string/app_name"
                 android:textColor="@color/blue_900"
-                android:textSize="15sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/noticeIcon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/appSetting"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/sub5"
+            <ImageView
+                android:id="@+id/appSetting"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="12dp"
+                android:clickable="true"
+                android:contentDescription="@string/icon3"
+                android:focusable="true"
+                android:padding="8dp"
+                android:src="@drawable/settings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/charcoal" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/body"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/navigationBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardMic"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text=""
-                android:textColor="@color/blue_800"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/common_box2"
+                android:backgroundTint="@color/blue_900"
+                android:minHeight="196dp"
+                android:padding="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/head5" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/head1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/heading2"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sub1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sub_title2"
+                    android:textColor="@color/blue_200"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/head1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_mic"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/common_box2"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:paddingHorizontal="50dp"
+                    android:text="@string/btntalk"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue_900"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/blue_200"
+                    app:icon="@drawable/mic"
+                    app:iconGravity="start"
+                    app:iconSize="30dp"
+                    app:iconTint="@color/blue_900"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sub1"
+                    app:layout_constraintWidth_max="320dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardSymptoms"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/common_box2"
+                android:backgroundTint="@color/blue_100"
+                android:minHeight="98dp"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardMic">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/symptomsIcon"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    app:cardBackgroundColor="@color/blue_200"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/icon4"
+                        android:src="@drawable/symptoms"
+                        app:tint="@color/blue_900" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/head2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="109dp"
+                    android:text="@string/heading3"
+                    android:textColor="@color/charcoal"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/symptomsIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sub2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/sub_title3"
+                    android:textColor="@color/charcoal"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/symptomsIcon"
+                    app:layout_constraintTop_toBottomOf="@id/head2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dailyReminder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/common_box2"
+                android:backgroundTint="@color/blue_100"
+                android:padding="22dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardSymptoms">
+
+
+                <!-- Icon -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/historyIconCard"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    app:cardBackgroundColor="@color/blue_200"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/icon5"
+                        android:src="@drawable/bell"
+                        app:tint="@color/blue_900" />
+                </androidx.cardview.widget.CardView>
+
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/header1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/heading4"
+                    android:textColor="@color/blue_900"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/toggle"
+                    app:layout_constraintStart_toEndOf="@id/historyIconCard"
+                    app:layout_constraintTop_toTopOf="@id/historyIconCard" />
+
+                <!-- Subtitle -->
+                <TextView
+                    android:id="@+id/subHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/sub_title4"
+                    android:textColor="@color/gray_secondary"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@id/toggle"
+                    app:layout_constraintStart_toEndOf="@id/historyIconCard"
+                    app:layout_constraintTop_toBottomOf="@id/header1" />
+
+                <!-- Toggle -->
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/blue_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/historyIconCard" />
+
+                <!-- Divider -->
+                <View
+                    android:id="@+id/dividerNotify"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/blue_700"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/historyIconCard" />
+
+                <!-- Time Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/timeCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    app:cardBackgroundColor="@color/blue_700"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dividerNotify">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="14dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/timeIcon"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            app:cardBackgroundColor="@color/blue_200"
+                            app:cardCornerRadius="14dp"
+                            app:cardElevation="4dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon6"
+                                android:src="@drawable/clock"
+                                app:tint="@color/blue_900" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:textColor="@color/blue_100"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@id/timeIcon"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="08:00 AM" />
+
+                        <TextView
+                            android:id="@+id/changeTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="@string/changeTime"
+                            android:textColor="@color/blue_200"
+                            android:textSize="11sp"
+                            app:layout_constraintStart_toEndOf="@id/timeIcon"
+                            app:layout_constraintTop_toBottomOf="@id/time" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardNotice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/common_box2"
+                android:backgroundTint="@color/blue_100"
+                android:minHeight="98dp"
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dailyReminder">
+
+                <ImageView
+                    android:id="@+id/noticeIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="2dp"
+                    android:contentDescription="@string/icon7"
+                    android:src="@drawable/info"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#FF9E00" />
+
+                <TextView
+                    android:id="@+id/head5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="146dp"
+                    android:text="@string/heading5"
+                    android:textColor="@color/blue_900"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/noticeIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sub5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text=""
+                    android:textColor="@color/blue_800"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/head5" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
